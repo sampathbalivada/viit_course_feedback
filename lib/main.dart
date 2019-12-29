@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:viit_course_feedback/widgets/custom_widgets.dart';
+import 'package:viit_course_feedback/widgets/custom_card.dart';
 
 void main() => runApp(MyApp());
 

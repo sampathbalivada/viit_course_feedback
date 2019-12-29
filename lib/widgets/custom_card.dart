@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_button.dart';
+
 class CustomCard extends StatefulWidget {
   final String title;
   final Widget content;
@@ -51,26 +53,13 @@ class _CustomCardState extends State<CustomCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     widget.onBackButtonPressed != null
-                        ? RaisedButton(
-                            color: Color(0xFF3949AB),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Text(
-                              ' Back ',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
+                        ? CustomButton(
+                            title: 'Back',
                             onPressed: widget.onBackButtonPressed,
                           )
                         : Container(),
-                    RaisedButton(
-                      color: Color(0xFF3949AB),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Text(
-                        'Next',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
+                    CustomButton(
+                      title: 'Next',
                       onPressed: widget.onNextButtonPressed,
                     )
                   ],
