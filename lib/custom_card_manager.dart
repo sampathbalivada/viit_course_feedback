@@ -1,35 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import './widgets/custom_card.dart';
 
-// import 'package:scoped_model/scoped_model.dart';
 import './scoped-model/courses_feedback_model.dart';
 
 class CustomCardManager extends StatefulWidget {
-  final CoursesFeedbackModel model;
-
-  CustomCardManager(this.model);
-
   @override
   _CustomCardManagerState createState() => _CustomCardManagerState();
 }
 
 class _CustomCardManagerState extends State<CustomCardManager> {
   @override
-  void initState() {
-    widget.model.fetchIndexing();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return CustomCard(
-      title: 'Choose you Regulation',
-      content: Container(),
-      onNextButtonPressed: () {},
-      onBackButtonPressed: () {
-        print("Hello World!");
-      },
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // Image.asset(
+            //   'vignan_logo.png',
+            //   fit: BoxFit.contain,
+            // ),
+            Text('VIIT COURSES FEEDBACK')
+          ],
+        ),
+      ),
+      body: ScopedModelDescendant(
+        builder:
+            (BuildContext context, Widget widget, CoursesFeedbackModel model) {
+          return CustomCard(
+            title: 'Choose your ' + model.presentInput,
+            content: Container(),
+            onNextButtonPressed: () {},
+            onBackButtonPressed: () {},
+          );
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './welcomePage.dart';
 import './custom_card_manager.dart';
 
 import 'package:scoped_model/scoped_model.dart';
@@ -25,6 +26,9 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         theme:
             ThemeData(primaryColor: Color(0xff3949AB), fontFamily: 'Poppins'),
+        routes: {
+          '/card': (BuildContext context) => CustomCardManager(),
+        },
         home: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -40,7 +44,7 @@ class _MyAppState extends State<MyApp> {
               ],
             ),
           ),
-          body: CustomCardManager(_model),
+          body: WelcomePage(_model),
         ),
       ),
     );
