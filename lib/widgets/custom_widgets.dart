@@ -28,7 +28,7 @@ class _CustomCardState extends State<CustomCard> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Container(
           height: _height * 0.5,
-          width: _height * 0.5,
+          width: _height * 0.6,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
