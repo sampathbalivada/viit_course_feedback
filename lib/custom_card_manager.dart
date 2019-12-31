@@ -3,6 +3,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import './widgets/custom_card.dart';
 
+import './widgets/card_content.dart';
+
 import './scoped-model/courses_feedback_model.dart';
 
 class CustomCardManager extends StatefulWidget {
@@ -33,9 +35,10 @@ class _CustomCardManagerState extends State<CustomCardManager> {
             (BuildContext context, Widget widget, CoursesFeedbackModel model) {
           return CustomCard(
             title: 'Choose your ' + model.presentInput,
-            content: Container(),
-            onNextButtonPressed: () {},
-            onBackButtonPressed: () {},
+            content: CardContent(model),
+            onNextButtonPressed: model.onNextButtonPressed,
+            onBackButtonPressed: model.onBackButtonPressed,
+            model: model,
           );
         },
       ),

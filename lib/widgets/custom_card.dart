@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../scoped-model/courses_feedback_model.dart';
+
 import 'custom_button.dart';
 
 class CustomCard extends StatefulWidget {
@@ -7,12 +9,13 @@ class CustomCard extends StatefulWidget {
   final Widget content;
   final Function onNextButtonPressed;
   final Function onBackButtonPressed;
+  final CoursesFeedbackModel model;
 
   CustomCard(
       {@required this.title,
       @required this.content,
       @required this.onNextButtonPressed,
-      this.onBackButtonPressed});
+      this.onBackButtonPressed, this.model});
 
   @override
   _CustomCardState createState() => _CustomCardState();
@@ -52,15 +55,21 @@ class _CustomCardState extends State<CustomCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    widget.onBackButtonPressed != null
+                    widget.model.displayBackButton
                         ? CustomButton(
                             title: 'Back',
-                            onPressed: widget.onBackButtonPressed,
+                            onPressed: () {
+                              widget.onBackButtonPressed();
+                              Navigator.of(context).pop();
+                            },
                           )
                         : Container(),
                     CustomButton(
                       title: 'Next',
-                      onPressed: widget.onNextButtonPressed,
+                      onPressed: () {
+                        widget.onNextButtonPressed();
+                        Navigator.pushNamed(context, '/card');
+                      },
                     )
                   ],
                 )

@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<CoursesFeedbackModel>(
+    return ScopedModel<CoursesFeedbackModel>( 
       model: _model,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
                 //   fit: BoxFit.contain,
                 // ),
                 Text('VIIT COURSES FEEDBACK')
-              ],
+                ],
             ),
           ),
           body: WelcomePage(_model),
