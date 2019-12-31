@@ -131,14 +131,14 @@ class CoursesFeedbackModel extends Model {
   }
 
   void onNextButtonPressed() {
-    // print(presentInput);
-    // print(inputs);
-    // print(_regulations);
-    // print(_batches);
+    print(presentInput);
+    print(inputs);
+    print(_regulations);
+    print(_batches);
     if (presentInput == 'Regulation') {
       _displayBackButton = true;
       responseDataBatch[finalEnteries['Regulation']]
-          .forEach((String batch, dynamic batchees) {
+.forEach((String batch, dynamic batchees) {
         // print(batch);
         // print(batchees);
         inputs.add(batch);
@@ -161,37 +161,30 @@ class CoursesFeedbackModel extends Model {
       });
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
-      print(responseDataBranch);
+      print("responseDataBranch");
       print(responseDataBranch[finalEnteries['Batch']]);
-      responseDataBranch[finalEnteries['Batch']]
-          .foreach((String key, dynamic value) {
-        // inputs.add(key);
-        // presentIndex += 1;
-
+      responseDataBranch[finalEnteries['Batch']].forEach((String key, dynamic value) {
+        inputs.add(key);
+        presentIndex += 1;
         print(key);
         print(value);
-
-        // final Map<String, dynamic> branches = value;
-        // List<String> tempBranches = [];
-
-        // print(branches);
-
-        // branches.forEach((String branch, dynamic branchData) {
-        //   print(branch);
-        //   print(branchData);
-        //   tempBranches.add(branch);
-        //   responseDataYear[branch] = branchData;
-        // });
-
-        // print(responseDataYear);
-
-        // _branches = tempBranches;
+        final Map<String, dynamic> branches = value;
+        List<String> tempBranches = [];
+        print(branches);
+        branches.forEach((String branch, dynamic branchData) {
+          print(branch);
+          print(branchData);
+          tempBranches.add(branch);
+          responseDataYear[branch] = branchData;
+        });
+        print(responseDataYear);
+        _branches = tempBranches;
       });
     }
-    print(inputs);
-    print(_regulations);
-    print(_batches);
-  }
+  //   print(inputs);
+  //   print(_regulations);
+  //   print(_batches);
+   }
 
   void fillFinalEnteries(String value) {
     finalEnteries[presentInput] = value;
