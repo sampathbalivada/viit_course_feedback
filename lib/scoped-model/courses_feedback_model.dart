@@ -14,6 +14,7 @@ class CoursesFeedbackModel extends Model {
   List<String> inputs = [];
   int presentIndex = 0;
   String _selectedValue = 'string';
+  String _selectedRollNumber = '';
 
   bool _isLoading = false;
   bool _displayBackButton = false;
@@ -45,6 +46,10 @@ class CoursesFeedbackModel extends Model {
 
   String get selectedValue {
     return _selectedValue;
+  }
+
+  String get selectedRollNumber {
+    return _selectedRollNumber;
   }
 
   List<String> get allRollNumbers {
@@ -121,8 +126,8 @@ class CoursesFeedbackModel extends Model {
   Future<bool> fetchRollNumbers() {
     _isLoading = true;
     notifyListeners();
-    print(
-        'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json');
+    // print(
+        // 'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json');
     return http
         .get(
             'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json')
@@ -130,6 +135,10 @@ class CoursesFeedbackModel extends Model {
       var rollJson = jsonDecode(response.body);
 
       _rollNumbers = rollJson != null ? List.from(rollJson) : null;
+
+      // print(_rollNumbers);
+
+      _selectedRollNumber = _rollNumbers[0];
 
       _isLoading = false;
       notifyListeners();
@@ -157,20 +166,22 @@ class CoursesFeedbackModel extends Model {
     } else if (presentInput == 'Branch') {
       _displayBackButton = true;
       _rollNumbers.clear();
+    } else if (presentInput == 'Registration Number') {
+      _displayBackButton = true;
     } else {
       _displayBackButton = true;
     }
     notifyListeners();
-    print(inputs);
-    print(_regulations);
-    print(_batches);
+    // print(inputs);
+    // print(_regulations);
+    // print(_batches);
   }
 
   void onNextButtonPressed() {
-    print(presentInput);
-    print(inputs);
-    print(_regulations);
-    print(_batches);
+    // print(presentInput);
+    // print(inputs);
+    // print(_regulations);
+    // print(_batches);
     if (presentInput == 'Regulation') {
       _displayBackButton = true;
       responseDataBatch[finalEnteries['Regulation']]
@@ -206,7 +217,11 @@ class CoursesFeedbackModel extends Model {
 
         _branches = tempBranches;
       });
-    } else if (presentInput == 'Branch') {}
+    } else if (presentInput == 'Branch') {
+      _displayBackButton = true;
+      inputs.add('Registration Number');
+      presentIndex += 1;
+    }
     //   print(inputs);
     //   print(_regulations);
     //   print(_batches);
@@ -216,7 +231,11 @@ class CoursesFeedbackModel extends Model {
   }
 
   void fillFinalEnteries(String value) async {
-    finalEnteries[presentInput] = value;
+    if (presentInput == 'Registration Number') {
+      finalEnteries['RollNumber'] = value;
+    } else {
+      finalEnteries[presentInput] = value;
+    }
     setSelectedValue(value);
     notifyListeners();
     print(finalEnteries);
@@ -233,7 +252,11 @@ class CoursesFeedbackModel extends Model {
 
   void setSelectedValue(String value) {
     _selectedValue = value;
-    print('Selected value: ' + _selectedValue);
+    // print('Selected value: ' + _selectedValue);
+  }
+
+  void setSelectedRollNumber(String value) {
+    _selectedRollNumber = value;
   }
 
   // void resetState() {
