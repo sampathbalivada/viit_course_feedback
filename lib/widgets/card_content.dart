@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../scoped-model/courses_feedback_model.dart';
 
+import './detail_row.dart';
+
 class CardContent extends StatefulWidget {
   final CoursesFeedbackModel model;
 
@@ -78,13 +80,44 @@ class _CardContentState extends State<CardContent> {
     );
   }
 
+  _buildFinalDetailsContent(CoursesFeedbackModel model) {
+    Map<String, String> details = model.finalEnteryDetails;
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          DetailsRow('Regulation', details['Regulation']),
+          SizedBox(height: 5),
+          DetailsRow('Batch', details['Batch']),
+          SizedBox(height: 5),
+          DetailsRow('Branch', details['Branch']),
+          SizedBox(height: 5),
+          DetailsRow('RollNumber', details['RollNumber']),
+          SizedBox(height: 5),
+        ],
+      ),
+    );
+  }
+
+  Widget pageContent(CoursesFeedbackModel model) {
+    Widget pageContent;
+
+    if (model.presentInput == 'Registration Number') {
+      pageContent = _buildDropDownMenu(widget.model);
+    } else if (model.presentInput == 'Here are your details, check them once') {
+      pageContent = _buildFinalDetailsContent(model);
+    } else {
+      pageContent = _buildListViewForSelectedContent(widget.model);
+    }
+
+    return pageContent;
+  }
+
   @override
   Widget build(BuildContext context) {
     // print('Hehe');
     return Container(
-      child: widget.model.presentInput == 'Registration Number'
-          ? _buildDropDownMenu(widget.model)
-          : _buildListViewForSelectedContent(widget.model),
+      child: pageContent(widget.model),
     );
   }
 }

@@ -23,15 +23,15 @@ class _CustomCardManagerState extends State<CustomCardManager> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Image(
-                  image: AssetImage('assets/vignan_logo.png'),
-                   height: 40,
-                   width: 40,
-                   fit: BoxFit.contain,
-                ),
+              image: AssetImage('assets/vignan_logo.png'),
+              height: 40,
+              width: 40,
+              fit: BoxFit.contain,
+            ),
             SizedBox(
-                  width: 10,
-                  height: 10,
-                ),
+              width: 10,
+              height: 10,
+            ),
             Text('VIIT COURSES FEEDBACK')
           ],
         ),
@@ -40,7 +40,10 @@ class _CustomCardManagerState extends State<CustomCardManager> {
         builder:
             (BuildContext context, Widget widget, CoursesFeedbackModel model) {
           return CustomCard(
-            title: 'Choose your ' + model.presentInput,
+            title:
+                model.presentInput == 'Here are your details, check them once'
+                    ? model.presentInput
+                    : 'Choose your ' + model.presentInput,
             content: CardContent(model),
             onNextButtonPressed: model.onNextButtonPressed,
             onBackButtonPressed: model.onBackButtonPressed,

@@ -32,6 +32,10 @@ class CoursesFeedbackModel extends Model {
     'RollNumber': '',
   };
 
+  Map<String, String> get finalEnteryDetails {
+    return finalEnteries;
+  }
+
   bool get isLoading {
     return _isLoading;
   }
@@ -220,6 +224,10 @@ class CoursesFeedbackModel extends Model {
     } else if (presentInput == 'Branch') {
       _displayBackButton = true;
       inputs.add('Registration Number');
+      presentIndex += 1;
+    } else if (presentInput == 'Registration Number') {
+      _displayBackButton = true;
+      inputs.add('Here are your details, check them once');
       presentIndex += 1;
     }
     //   print(inputs);
