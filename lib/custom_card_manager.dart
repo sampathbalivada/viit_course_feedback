@@ -22,10 +22,16 @@ class _CustomCardManagerState extends State<CustomCardManager> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            // Image.asset(
-            //   'vignan_logo.png',
-            //   fit: BoxFit.contain,
-            // ),
+            Image(
+                  image: AssetImage('assets/vignan_logo.png'),
+                   height: 40,
+                   width: 40,
+                   fit: BoxFit.contain,
+                ),
+            SizedBox(
+                  width: 10,
+                  height: 10,
+                ),
             Text('VIIT COURSES FEEDBACK')
           ],
         ),
