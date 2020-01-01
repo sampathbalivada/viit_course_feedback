@@ -1,6 +1,5 @@
+import 'dart:async';
 import 'dart:convert';
-
-// import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -14,9 +13,11 @@ class CoursesFeedbackModel extends Model {
 
   List<String> inputs = [];
   int presentIndex = 0;
+  String _selectedValue = 'string';
 
   bool _isLoading = false;
   bool _displayBackButton = false;
+  bool _disableButton = false;
 
   List<String> _rollNumbers = [];
   List<String> _regulations = [];
@@ -36,6 +37,14 @@ class CoursesFeedbackModel extends Model {
 
   bool get displayBackButton {
     return _displayBackButton;
+  }
+
+  bool get disableButton {
+    return _disableButton;
+  }
+
+  String get selectedValue {
+    return _selectedValue;
   }
 
   List<String> get allRollNumbers {
@@ -59,6 +68,10 @@ class CoursesFeedbackModel extends Model {
       return allRegulations;
     } else if (presentInput == 'Batch') {
       return allBatches;
+    } else if (presentInput == 'Branch') {
+      return allBranches;
+    } else if (presentInput == 'Registration Number') {
+      return allRollNumbers;
     }
     return null;
   }
@@ -105,6 +118,30 @@ class CoursesFeedbackModel extends Model {
     });
   }
 
+  Future<bool> fetchRollNumbers() {
+    _isLoading = true;
+    notifyListeners();
+    print(
+        'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json');
+    return http
+        .get(
+            'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json')
+        .then<bool>((http.Response response) {
+      var rollJson = jsonDecode(response.body);
+
+      _rollNumbers = rollJson != null ? List.from(rollJson) : null;
+
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    }).catchError((error) {
+      print('There is an error');
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    });
+  }
+
   void onBackButtonPressed() {
     presentIndex -= 1;
     inputs.removeLast();
@@ -113,7 +150,6 @@ class CoursesFeedbackModel extends Model {
       _rollNumbers.clear();
       _batches.clear();
       _branches.clear();
-      notifyListeners();
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
       _rollNumbers.clear();
@@ -123,8 +159,8 @@ class CoursesFeedbackModel extends Model {
       _rollNumbers.clear();
     } else {
       _displayBackButton = true;
-      notifyListeners();
     }
+    notifyListeners();
     print(inputs);
     print(_regulations);
     print(_batches);
@@ -138,9 +174,7 @@ class CoursesFeedbackModel extends Model {
     if (presentInput == 'Regulation') {
       _displayBackButton = true;
       responseDataBatch[finalEnteries['Regulation']]
-.forEach((String batch, dynamic batchees) {
-        // print(batch);
-        // print(batchees);
+          .forEach((String batch, dynamic batchees) {
         inputs.add(batch);
         presentIndex += 1;
 
@@ -148,46 +182,62 @@ class CoursesFeedbackModel extends Model {
         List<String> tempBatches = [];
 
         batches.forEach((String batch, dynamic branch) {
-          // print(batch);
           tempBatches.add(batch);
           responseDataBranch[batch] = branch;
-          // print(branch);
         });
-
-        // print('Response data branch');
-        print(responseDataBranch);
 
         _batches = tempBatches;
       });
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
-      print("responseDataBranch");
-      print(responseDataBranch[finalEnteries['Batch']]);
-      responseDataBranch[finalEnteries['Batch']].forEach((String key, dynamic value) {
+
+      responseDataBranch[finalEnteries['Batch']]
+          .forEach((String key, dynamic value) {
         inputs.add(key);
         presentIndex += 1;
-        print(key);
-        print(value);
+
         final Map<String, dynamic> branches = value;
         List<String> tempBranches = [];
-        print(branches);
+
         branches.forEach((String branch, dynamic branchData) {
-          print(branch);
-          print(branchData);
           tempBranches.add(branch);
           responseDataYear[branch] = branchData;
         });
-        print(responseDataYear);
+
         _branches = tempBranches;
       });
-    }
-  //   print(inputs);
-  //   print(_regulations);
-  //   print(_batches);
-   }
-
-  void fillFinalEnteries(String value) {
-    finalEnteries[presentInput] = value;
-    print(finalEnteries);
+    } else if (presentInput == 'Branch') {}
+    //   print(inputs);
+    //   print(_regulations);
+    //   print(_batches);
+    _disableButton = true;
+    setSelectedValue('');
+    notifyListeners();
   }
+
+  void fillFinalEnteries(String value) async {
+    finalEnteries[presentInput] = value;
+    setSelectedValue(value);
+    notifyListeners();
+    print(finalEnteries);
+    if (presentInput == 'Branch') {
+      await fetchRollNumbers();
+
+      _disableButton = false;
+      notifyListeners();
+    } else {
+      _disableButton = false;
+      notifyListeners();
+    }
+  }
+
+  void setSelectedValue(String value) {
+    _selectedValue = value;
+    print('Selected value: ' + _selectedValue);
+  }
+
+  // void resetState() {
+  //   print('In scoped model resetState');
+  //   notifyListeners();
+  // }
 }

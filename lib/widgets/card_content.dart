@@ -28,7 +28,7 @@ class _CardContentState extends State<CardContent> {
         leading: Radio(
           groupValue: _selectedOption,
           onChanged: (String value) {
-            setState(() {
+            setState(() { 
               _selectedOption = value;
               model.fillFinalEnteries(_selectedOption);
             });

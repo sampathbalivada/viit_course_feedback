@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import './widgets/custom_button.dart';
 
@@ -23,10 +24,10 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    
+
     return Center(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: _height/4),
+        padding: EdgeInsets.symmetric(vertical: _height / 4),
         child: Column(
           children: <Widget>[
             Text(
@@ -36,12 +37,20 @@ class _WelcomePageState extends State<WelcomePage> {
             SizedBox(
               height: 20,
             ),
-            CustomButton(
-              title: 'Click Here',
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/card');
+            ScopedModelDescendant(
+              builder: (BuildContext context, Widget widget,
+                  CoursesFeedbackModel model) {
+                return model.isLoading
+                    ? CircularProgressIndicator()
+                    : CustomButton(
+                        title: 'Click Here',
+                        onPressed: () {
+                          model.setSelectedValue('');
+                          Navigator.pushReplacementNamed(context, '/card');
+                        },
+                      );
               },
-            ),
+            )
           ],
         ),
       ),

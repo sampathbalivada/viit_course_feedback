@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import '../scoped-model/courses_feedback_model.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -8,14 +11,21 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      color: Color(0xFF3949AB),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Text(
-        title,
-        style: TextStyle(color: Colors.white, fontSize: 16),
-      ),
-      onPressed: onPressed,
+    return ScopedModelDescendant(
+      builder:
+          (BuildContext context, Widget widget, CoursesFeedbackModel model) {
+        return RaisedButton(
+          color: Color(0xFF3949AB),
+          disabledColor: Colors.grey,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: Text(
+            title,
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          onPressed: (model.disableButton || model.selectedValue == '') && (title == 'Next') ? null : onPressed,
+        );
+      },
     );
   }
 }

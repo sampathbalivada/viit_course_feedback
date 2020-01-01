@@ -15,7 +15,8 @@ class CustomCard extends StatefulWidget {
       {@required this.title,
       @required this.content,
       @required this.onNextButtonPressed,
-      this.onBackButtonPressed, this.model});
+      this.onBackButtonPressed,
+      this.model});
 
   @override
   _CustomCardState createState() => _CustomCardState();
@@ -60,7 +61,8 @@ class _CustomCardState extends State<CustomCard> {
                             title: 'Back',
                             onPressed: () {
                               widget.onBackButtonPressed();
-                              Navigator.of(context).pop();
+                              // Navigator.of(context).pop();
+                              // widget.model.resetState();
                             },
                           )
                         : Container(),
@@ -68,7 +70,8 @@ class _CustomCardState extends State<CustomCard> {
                       title: 'Next',
                       onPressed: () {
                         widget.onNextButtonPressed();
-                        Navigator.pushNamed(context, '/card');
+                        // Navigator.pushNamed(context, '/card');
+                        // widget.model.resetState();
                       },
                     )
                   ],
