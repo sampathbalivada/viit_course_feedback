@@ -27,8 +27,11 @@ class _MyAppState extends State<MyApp> {
       model: _model,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme:
-            ThemeData(primaryColor: Color(0xff3949AB), fontFamily: 'Poppins'),
+        theme: ThemeData(
+          primaryColor: Color(0xff3949AB),
+          accentColor: Color(0xff673AB7),
+          fontFamily: 'Poppins',
+        ),
         routes: {
           '/card': (BuildContext context) => CustomCardManager(),
           '/semestersPage': (BuildContext context) => SemestersPage(),

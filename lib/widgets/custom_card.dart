@@ -31,7 +31,13 @@ class _CustomCardState extends State<CustomCard> {
 
     return Center(
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(
+            color: Theme.of(context).accentColor,
+            width: 2,
+          ),
+        ),
         child: Container(
           height: _height * 0.5,
           width: _height * 0.6,
@@ -48,7 +54,7 @@ class _CustomCardState extends State<CustomCard> {
                 Divider(
                   height: 4,
                   thickness: 2,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
                 Flexible(
                   child: widget.content,
@@ -65,7 +71,13 @@ class _CustomCardState extends State<CustomCard> {
                               // widget.model.resetState();
                             },
                           )
-                        : Container(),
+                        : Container(
+                            width: 12,
+                            child: Text(
+                              'NaN',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                     CustomButton(
                       title: 'Next',
                       onPressed: () {

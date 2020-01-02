@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
       builder:
           (BuildContext context, Widget widget, CoursesFeedbackModel model) {
         return RaisedButton(
-          color: Color(0xFF3949AB),
+          color: Theme.of(context).accentColor,
           disabledColor: Colors.grey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
