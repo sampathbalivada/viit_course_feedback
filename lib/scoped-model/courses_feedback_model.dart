@@ -15,6 +15,7 @@ class CoursesFeedbackModel extends Model {
   int presentIndex = 0;
   // String _selectedValue = 'string';
   String _selectedRollNumber = '';
+  String _selectedOption = '';
 
   bool _isLoading = false;
   bool _displayBackButton = false;
@@ -52,6 +53,10 @@ class CoursesFeedbackModel extends Model {
   // String get selectedValue {
   //   return _selectedValue;
   // }
+
+  String get selectedOption {
+    return _selectedOption;
+  }
 
   String get getFinalPresentEntry {
     if (presentInput == 'Registration Number') {
@@ -171,6 +176,8 @@ class CoursesFeedbackModel extends Model {
   }
 
   void onBackButtonPressed() {
+    setSelectedOption('');
+
     presentIndex -= 1;
     inputs.removeLast();
     if (presentInput == 'Regulation') {
@@ -202,6 +209,7 @@ class CoursesFeedbackModel extends Model {
   }
 
   void onNextButtonPressed() {
+    setSelectedOption('');
     // print(presentInput);
     // print(inputs);
     // print(_regulations);
@@ -260,6 +268,7 @@ class CoursesFeedbackModel extends Model {
       // setSelectedValue('');
       notifyListeners();
     } else if (presentInput == 'Registration Number') {
+      setSelectedOption('Branch');
       _displayBackButton = true;
       inputs.add('Here are your details, check them once');
       presentIndex += 1;
@@ -312,10 +321,16 @@ class CoursesFeedbackModel extends Model {
   //   notifyListeners();
   // }
 
+  void setSelectedOption(String value) {
+    _selectedOption = value;
+    notifyListeners();
+  }
+
   void extractSemesters() {
     List<String> tempList = [];
     // print('Yeah');
-    responseDataYear[finalEnteryDetails['Branch']].forEach((String key, dynamic value) {
+    responseDataYear[finalEnteryDetails['Branch']]
+        .forEach((String key, dynamic value) {
       // print(key);
       // print(value);
       Map<String, dynamic> temp = value;

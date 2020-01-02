@@ -16,7 +16,7 @@ class CardContent extends StatefulWidget {
 
 class _CardContentState extends State<CardContent> {
   List<String> contentList = [];
-  String _selectedOption = '';
+  // String _selectedOption = '';
 
   // String dropDownValue = '';
 
@@ -30,25 +30,26 @@ class _CardContentState extends State<CardContent> {
   _buildListViewForSelectedContent(CoursesFeedbackModel model) {
     // print(model.getContentList);
     // print('content: ' + model.getContentList.toString());
+    // print("called now");
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) => ListTile(
         leading: Radio(
-          groupValue: _selectedOption,
+          groupValue: model.selectedOption,
           onChanged: (String value) {
             setState(() {
-              _selectedOption = value;
-              model.fillFinalEnteries(_selectedOption);
+              model.setSelectedOption(value);
+              model.fillFinalEnteries(model.selectedOption);
             });
           },
           value: model.getContentList[index],
         ),
         title: Text(model.getContentList[index]),
-        onTap: () {
-          setState(() {
-            _selectedOption = '';
-            model.clearFinalEntry();
-          });
-        },
+        // onTap: () {
+        //   setState(() {
+        //     model.setSelectedOption('');
+        //     model.clearFinalEntry();
+        //   });
+        // },
       ),
       itemCount: model.getContentList.length,
     );
@@ -66,6 +67,7 @@ class _CardContentState extends State<CardContent> {
             setState(() {
               model.setSelectedRollNumber(value);
               model.fillFinalEnteries(value);
+              model.setSelectedOption(value);
               // print(_selectedOption);
             });
           },
@@ -117,6 +119,7 @@ class _CardContentState extends State<CardContent> {
   @override
   Widget build(BuildContext context) {
     // print('Hehe');
+    // print('rebuilding');
     return Container(
       child: pageContent(widget.model),
     );

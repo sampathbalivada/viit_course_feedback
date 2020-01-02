@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
             title,
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
-          onPressed: (model.disableButton || model.getFinalPresentEntry == '' || model.isLoading) && (title == 'Next') ? null : onPressed,
+          onPressed: (model.selectedOption == '' || model.disableButton || model.getFinalPresentEntry == '' || model.isLoading) && (title == 'Next') ? null : onPressed,
         );
       },
     );
