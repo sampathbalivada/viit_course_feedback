@@ -131,7 +131,7 @@ class CoursesFeedbackModel extends Model {
     _isLoading = true;
     notifyListeners();
     // print(
-        // 'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json');
+    // 'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json');
     return http
         .get(
             'https://college-feedback-5c329.firebaseio.com/StudentData/Batch/${finalEnteries['Batch']}/Branch/${finalEnteries['Branch']}.json')
@@ -203,6 +203,10 @@ class CoursesFeedbackModel extends Model {
 
         _batches = tempBatches;
       });
+
+      _disableButton = true;
+      setSelectedValue('');
+      notifyListeners();
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
 
@@ -217,25 +221,34 @@ class CoursesFeedbackModel extends Model {
         branches.forEach((String branch, dynamic branchData) {
           tempBranches.add(branch);
           responseDataYear[branch] = branchData;
+          print(responseDataYear);
+          print(responseDataYear[branch]);
         });
 
         _branches = tempBranches;
       });
+
+      _disableButton = true;
+      setSelectedValue('');
+      notifyListeners();
     } else if (presentInput == 'Branch') {
       _displayBackButton = true;
       inputs.add('Registration Number');
       presentIndex += 1;
+      _disableButton = true;
+      setSelectedValue('');
+      notifyListeners();
     } else if (presentInput == 'Registration Number') {
       _displayBackButton = true;
       inputs.add('Here are your details, check them once');
       presentIndex += 1;
+      notifyListeners();
+    } else if (presentInput == 'Here are your details, check them once') {
+            
     }
     //   print(inputs);
     //   print(_regulations);
     //   print(_batches);
-    _disableButton = true;
-    setSelectedValue('');
-    notifyListeners();
   }
 
   void fillFinalEnteries(String value) async {

@@ -45,7 +45,12 @@ class _CustomCardManagerState extends State<CustomCardManager> {
                     ? model.presentInput
                     : 'Choose your ' + model.presentInput,
             content: CardContent(model),
-            onNextButtonPressed: model.onNextButtonPressed,
+            onNextButtonPressed:
+                model.presentInput == 'Here are your details, check them once'
+                    ? () {
+                      Navigator.pushReplacementNamed(context, '/semestersPage');
+                    }
+                    : model.onNextButtonPressed,
             onBackButtonPressed: model.onBackButtonPressed,
             model: model,
           );
