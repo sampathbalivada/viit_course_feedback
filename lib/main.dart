@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viit_course_feedback/test_page.dart';
 
 import './welcomePage.dart';
 import './custom_card_manager.dart';
@@ -36,11 +37,29 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/card': (BuildContext context) => CustomCardManager(),
           '/semestersPage': (BuildContext context) => SemestersPage(),
+          '/testPage': (BuildContext context) => TestPage()
         },
-        home: Scaffold(
-          appBar: buildAppBar(),
-          body: WelcomePage(_model),
-        ),
+        home: AppHome(model: _model,),
+      ),
+    );
+  }
+}
+
+class AppHome extends StatelessWidget {
+  final model;
+
+  AppHome({@required this.model});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: buildAppBar(),
+      body: WelcomePage(model),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/testPage');
+        },
+        child: Text('Test'),
       ),
     );
   }

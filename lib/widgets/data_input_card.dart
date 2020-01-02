@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'custom_button.dart';
 
 class DataInputCard extends StatefulWidget {
-  final String title;
-  final Widget content;
+  final String subjectName;
   final Function onNextButtonPressed;
+  final List<String> courseOutcomes;
 
   DataInputCard(
-      {@required this.title,
-      @required this.content,
-      @required this.onNextButtonPressed});
+      {@required this.subjectName,
+      @required this.onNextButtonPressed,
+      @required this.courseOutcomes});
 
   @override
   _DataInputCardState createState() => _DataInputCardState();
@@ -61,7 +61,7 @@ class _DataInputCardState extends State<DataInputCard> {
                     children: <Widget>[
                       SizedBox(height: _height * 0.05),
                       Text(
-                        widget.title,
+                        widget.subjectName,
                         style: TextStyle(fontSize: 24),
                       ),
                       Divider(
@@ -70,7 +70,7 @@ class _DataInputCardState extends State<DataInputCard> {
                         color: Theme.of(context).primaryColor,
                       ),
                       Flexible(
-                        child: widget.content,
+                        child: Container(),
                       ),
                       Row(
                         children: <Widget>[
