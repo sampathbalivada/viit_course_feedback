@@ -17,7 +17,7 @@ class DataInputCard extends StatefulWidget {
 }
 
 class _DataInputCardState extends State<DataInputCard> {
-  bool showProgressBar = false;
+  List<double> sliderValues = [0, 0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +33,41 @@ class _DataInputCardState extends State<DataInputCard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Flexible(
-                  child: Text('Year - 3'),
+                  child: Text(
+                    'Year - 3',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
                 VerticalDivider(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                  child: Text('Semester - 1'),
+                  child: Text(
+                    'Semester - 1',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
                 VerticalDivider(
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
-                Flexible(child: Text('17L31A05T8')),
+                Flexible(
+                    child: Text(
+                  '17L31A05T8',
+                  style: TextStyle(fontSize: 16),
+                )),
               ],
             ),
           ),
           Flexible(
             child: Card(
+              margin: EdgeInsets.only(bottom: _height * 0.05),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                  color: Theme.of(context).accentColor,
+                  width: 2,
+                ),
+              ),
               child: Container(
                 width: _width * 0.95,
                 child: Padding(
@@ -67,16 +83,64 @@ class _DataInputCardState extends State<DataInputCard> {
                       Divider(
                         height: 4,
                         thickness: 2,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).accentColor,
+                        indent: _width * 0.3,
+                        endIndent: _width * 0.3,
                       ),
                       Flexible(
-                        child: Container(),
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(
+                            left: _width * 0.1,
+                            right: _width * 0.1,
+                            top: _height * 0.08,
+                            bottom: _height * 0.08,
+                          ),
+                          itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Flexible(
+                                  flex: 2,
+                                  child: Text(
+                                    '•',
+                                    style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: 48
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  flex: 4,
+                                  child: Text(
+                                    widget.courseOutcomes[index],
+                                    style: TextStyle(fontSize: 18),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Flexible(
+                                  flex: 2,
+                                  child: Slider(
+                                    label: sliderValues[index].toString(),
+                                    divisions: 3,
+                                    max: 3,
+                                    value: sliderValues[index].toDouble(),
+                                    activeColor: Theme.of(context).accentColor,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        sliderValues[index] = newValue;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                       Row(
                         children: <Widget>[
-                          Flexible(
-                            child: Container()
-                          ),                                           
+                          Flexible(child: Container()),
                           CustomButton(
                             title: 'Next',
                             onPressed: widget.onNextButtonPressed,
