@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import './widgets/semester_content.dart';
+import './widgets/appbar.dart';
+
+import './scoped-model/courses_feedback_model.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class SemestersPage extends StatelessWidget {
   @override
@@ -8,26 +12,7 @@ class SemestersPage extends StatelessWidget {
     final _height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Image(
-              image: AssetImage('assets/vignan_logo.png'),
-              height: 40,
-              width: 40,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(
-              width: 10,
-              height: 10,
-            ),
-            Text('VIIT COURSES FEEDBACK')
-          ],
-        ),
-      ),
+      appBar: buildAppBar(),
       body: Center(
         child: Card(
           shape:
@@ -52,7 +37,11 @@ class SemestersPage extends StatelessWidget {
                   ),
                   Flexible(
                     // child: widget.content,
-                    child: SemesterContent(),
+                    child: ScopedModelDescendant(
+                      builder: (BuildContext context, Widget widget, CoursesFeedbackModel model) {
+                        return SemesterContent(model, _height * 0.5);
+                      },
+                    ),
                   ),
                 ],
               ),
