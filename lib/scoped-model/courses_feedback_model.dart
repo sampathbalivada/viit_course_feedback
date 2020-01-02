@@ -24,6 +24,7 @@ class CoursesFeedbackModel extends Model {
   List<String> _regulations = [];
   List<String> _batches = [];
   List<String> _branches = [];
+  List<String> _semesters = [];
 
   Map<String, String> finalEnteries = {
     'Regulation': '',
@@ -70,6 +71,10 @@ class CoursesFeedbackModel extends Model {
 
   List<String> get allBranches {
     return List.from(_branches);
+  }
+
+  List<String> get allSemesters {
+    return List.from(_semesters);
   }
 
   List<String> get getContentList {
@@ -221,10 +226,11 @@ class CoursesFeedbackModel extends Model {
         branches.forEach((String branch, dynamic branchData) {
           tempBranches.add(branch);
           responseDataYear[branch] = branchData;
-          print(responseDataYear);
-          print(responseDataYear[branch]);
+          // print(responseDataYear);
+          // print(responseDataYear[branch]);
         });
-
+        print('This');
+        print(responseDataYear);
         _branches = tempBranches;
       });
 
@@ -243,8 +249,6 @@ class CoursesFeedbackModel extends Model {
       inputs.add('Here are your details, check them once');
       presentIndex += 1;
       notifyListeners();
-    } else if (presentInput == 'Here are your details, check them once') {
-            
     }
     //   print(inputs);
     //   print(_regulations);
@@ -284,4 +288,30 @@ class CoursesFeedbackModel extends Model {
   //   print('In scoped model resetState');
   //   notifyListeners();
   // }
+
+  void extractSemesters() {
+    List<String> tempList = [];
+    print('Yeah');
+    responseDataYear['CSE'].forEach((String key, dynamic value) {
+      // print(key);
+      // print(value);
+      Map<String, dynamic> temp = value;
+
+      temp.forEach((String key, dynamic value) {
+        // print(key);
+        // print(value);
+
+        Map<String, dynamic> temp1 = value;
+
+        temp1.forEach((String key, dynamic value) {
+          // print(key);
+          // print(value);
+
+          tempList.add(value.toString());
+        });
+      });
+    });
+    _semesters = tempList;
+    print(_semesters);
+  }
 }
