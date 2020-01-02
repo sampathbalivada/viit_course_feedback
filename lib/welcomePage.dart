@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import './widgets/custom_button.dart';
+// import './widgets/custom_button.dart';
 
 import './scoped-model/courses_feedback_model.dart';
 
@@ -42,10 +42,16 @@ class _WelcomePageState extends State<WelcomePage> {
                   CoursesFeedbackModel model) {
                 return model.isLoading
                     ? CircularProgressIndicator()
-                    : CustomButton(
-                        title: 'Click Here',
+                    : RaisedButton(
+                        child: Text(
+                          'Click Here',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                        color: Theme.of(context).accentColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                         onPressed: () {
-                          model.setSelectedValue('');
+                          // model.setSelectedValue('');
                           Navigator.pushReplacementNamed(context, '/card');
                         },
                       );

@@ -46,6 +46,7 @@ class _CardContentState extends State<CardContent> {
         onTap: () {
           setState(() {
             _selectedOption = '';
+            model.clearFinalEntry();
           });
         },
       ),

@@ -13,7 +13,7 @@ class CoursesFeedbackModel extends Model {
 
   List<String> inputs = [];
   int presentIndex = 0;
-  String _selectedValue = 'string';
+  // String _selectedValue = 'string';
   String _selectedRollNumber = '';
 
   bool _isLoading = false;
@@ -49,8 +49,18 @@ class CoursesFeedbackModel extends Model {
     return _disableButton;
   }
 
-  String get selectedValue {
-    return _selectedValue;
+  // String get selectedValue {
+  //   return _selectedValue;
+  // }
+
+  String get getFinalPresentEntry {
+    if (presentInput == 'Registration Number') {
+      return finalEnteries['RollNumber'];
+    } else if (finalEnteries.containsKey(presentInput)) {
+      return finalEnteries[presentInput];
+    } else {
+      return 'There is something';
+    }
   }
 
   String get selectedRollNumber {
@@ -168,15 +178,20 @@ class CoursesFeedbackModel extends Model {
       _rollNumbers.clear();
       _batches.clear();
       _branches.clear();
+      finalEnteries[presentInput] = '';
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
       _rollNumbers.clear();
       _branches.clear();
+      finalEnteries[presentInput] = '';
     } else if (presentInput == 'Branch') {
       _displayBackButton = true;
       _rollNumbers.clear();
+      finalEnteries[presentInput] = '';
+      finalEnteries['RollNumber'] = '';
     } else if (presentInput == 'Registration Number') {
       _displayBackButton = true;
+      finalEnteries['RollNumber'] = '';
     } else {
       _displayBackButton = true;
     }
@@ -209,8 +224,8 @@ class CoursesFeedbackModel extends Model {
         _batches = tempBatches;
       });
 
-      _disableButton = true;
-      setSelectedValue('');
+      // _disableButton = true;
+      // setSelectedValue('');
       notifyListeners();
     } else if (presentInput == 'Batch') {
       _displayBackButton = true;
@@ -234,15 +249,15 @@ class CoursesFeedbackModel extends Model {
         _branches = tempBranches;
       });
 
-      _disableButton = true;
-      setSelectedValue('');
+      // _disableButton = true;
+      // setSelectedValue('');
       notifyListeners();
     } else if (presentInput == 'Branch') {
       _displayBackButton = true;
       inputs.add('Registration Number');
       presentIndex += 1;
-      _disableButton = true;
-      setSelectedValue('');
+      // _disableButton = true;
+      // setSelectedValue('');
       notifyListeners();
     } else if (presentInput == 'Registration Number') {
       _displayBackButton = true;
@@ -261,24 +276,32 @@ class CoursesFeedbackModel extends Model {
     } else {
       finalEnteries[presentInput] = value;
     }
-    setSelectedValue(value);
-    notifyListeners();
+    // setSelectedValue(value);
+    // notifyListeners();
     print(finalEnteries);
     if (presentInput == 'Branch') {
       await fetchRollNumbers();
-
-      _disableButton = false;
+      // _disableButton = false;
       notifyListeners();
     } else {
-      _disableButton = false;
+      // _disableButton = false;
       notifyListeners();
     }
   }
 
-  void setSelectedValue(String value) {
-    _selectedValue = value;
-    // print('Selected value: ' + _selectedValue);
+  void clearFinalEntry() {
+    if (presentInput == 'Registration Number') {
+      finalEnteries['RollNumber'] = '';
+    } else if (finalEnteries.containsKey(presentInput)) {
+      finalEnteries[presentInput] = '';
+    }
+    notifyListeners();
   }
+
+  // void setSelectedValue(String value) {
+  //   _selectedValue = value;
+  //   // print('Selected value: ' + _selectedValue);
+  // }
 
   void setSelectedRollNumber(String value) {
     _selectedRollNumber = value;
