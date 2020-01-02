@@ -51,10 +51,11 @@ class _DataInputCardState extends State<DataInputCard> {
                   color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                    child: Text(
-                  '17L31A05T8',
-                  style: TextStyle(fontSize: 16),
-                )),
+                  child: Text(
+                    '17L31A05T8',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
               ],
             ),
           ),
@@ -105,9 +106,8 @@ class _DataInputCardState extends State<DataInputCard> {
                                   child: Text(
                                     '•',
                                     style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 48
-                                    ),
+                                        color: Theme.of(context).accentColor,
+                                        fontSize: 48),
                                   ),
                                 ),
                                 Flexible(
@@ -131,6 +131,23 @@ class _DataInputCardState extends State<DataInputCard> {
                                         sliderValues[index] = newValue;
                                       });
                                     },
+                                  ),
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                    side: BorderSide(
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  ),
+                                  child: Container(
+                                    width: 24,
+                                    child: Center(
+                                      child: Text(
+                                        ' ' + sliderValues[index].toString() + ' ',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
