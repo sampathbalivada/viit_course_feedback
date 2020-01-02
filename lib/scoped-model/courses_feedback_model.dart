@@ -244,8 +244,8 @@ class CoursesFeedbackModel extends Model {
           // print(responseDataYear);
           // print(responseDataYear[branch]);
         });
-        print('This');
-        print(responseDataYear);
+        // print('This');
+        // print(responseDataYear);
         _branches = tempBranches;
       });
 
@@ -314,8 +314,8 @@ class CoursesFeedbackModel extends Model {
 
   void extractSemesters() {
     List<String> tempList = [];
-    print('Yeah');
-    responseDataYear['CSE'].forEach((String key, dynamic value) {
+    // print('Yeah');
+    responseDataYear[finalEnteryDetails['Branch']].forEach((String key, dynamic value) {
       // print(key);
       // print(value);
       Map<String, dynamic> temp = value;
@@ -335,6 +335,6 @@ class CoursesFeedbackModel extends Model {
       });
     });
     _semesters = tempList;
-    print(_semesters);
+    // print(_semesters);
   }
 }
