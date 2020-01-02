@@ -20,7 +20,7 @@ class _TestPageState extends State<TestPage> {
           'Course Outcome 3',
           'Course Outcome 4',
         ],
-        onNextButtonPressed: null,
+        onNextButtonPressed: () {},
       ),
     );
   }
