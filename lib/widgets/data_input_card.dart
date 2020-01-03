@@ -31,6 +31,27 @@ class DataInputCard extends StatefulWidget {
 class _DataInputCardState extends State<DataInputCard> {
   List<double> sliderValues = [0, 0, 0, 0];
 
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Card(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Theme.of(context).accentColor, width: 2),
+            ),
+            child: Text('Submission Successfull'),
+          ),
+        );
+      },
+    );
+  }
+
+  void _displaySubmissionAlert() {
+    _showDialog();
+    // Fill Here
+  }
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
