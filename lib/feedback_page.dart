@@ -15,7 +15,11 @@ class FeedBackPage extends StatelessWidget {
       body: ScopedModelDescendant(
         builder:
             (BuildContext context, Widget widget, CoursesFeedbackModel model) {
-          return DataInputCard(model);
+          return model.isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : DataInputCard(model);
         },
       ),
     );
