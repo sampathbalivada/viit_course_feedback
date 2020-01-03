@@ -57,7 +57,6 @@ class _CardContentState extends State<CardContent> {
 
   _buildDropDownMenu(CoursesFeedbackModel model) {
     // print(model.getContentList[10]);
-
     return Container(
       height: 300,
       child: DropdownButtonHideUnderline(
@@ -65,15 +64,18 @@ class _CardContentState extends State<CardContent> {
           value: model.selectedRollNumber,
           onChanged: (String value) {
             setState(() {
-              model.setSelectedRollNumber(value);
-              model.fillFinalEnteries(value);
-              model.setSelectedOption(value);
+              if(value!="Select your registration Id"){
+                model.setSelectedRollNumber(value);
+                model.fillFinalEnteries(value);
+                model.setSelectedOption(value);
+              }
               // print(_selectedOption);
             });
           },
           items: model.getContentList
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem(
+              
               value: value,
               child: Text(value),
             );
