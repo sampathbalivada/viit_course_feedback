@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:viit_course_feedback/widgets/submission_alert.dart';
 
 // import 'custom_button.dart';
 
@@ -40,19 +41,7 @@ class _DataInputCardState extends State<DataInputCard> {
         Navigator.pushReplacementNamed(context, '/semestersPage');
       });
 
-      return Scaffold(
-        body: Center(
-          child: AlertDialog(
-            content: Card(
-              shape: RoundedRectangleBorder(
-                side:
-                    BorderSide(color: Theme.of(context).accentColor, width: 2),
-              ),
-              child: Text('Submission Successfull'),
-            ),
-          ),
-        ),
-      );
+      return SubmissionAlert();
     }
 
     final _height = MediaQuery.of(context).size.height;

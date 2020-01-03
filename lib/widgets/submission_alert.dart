@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:viit_course_feedback/widgets/appbar.dart';
-import 'package:viit_course_feedback/widgets/detail_table.dart';
 
-class TestPage extends StatefulWidget {
-  @override
-  _TestPageState createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
+class SubmissionAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
