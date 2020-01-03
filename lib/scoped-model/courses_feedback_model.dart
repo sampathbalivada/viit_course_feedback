@@ -500,7 +500,7 @@ class CoursesFeedbackModel extends Model {
     await putfeedBack();
 
     print('am i waiting');
-
+    _courseOutcomes.clear();
     _presentSubjectIndex += 1;
     fillOutcomesFromDic();
 
