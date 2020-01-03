@@ -17,13 +17,21 @@ class CustomButton extends StatelessWidget {
         return RaisedButton(
           color: Theme.of(context).accentColor,
           disabledColor: Colors.grey,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(width: 2),
+          ),
           child: Text(
             title,
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
-          onPressed: (model.selectedOption == '' || model.disableButton || model.getFinalPresentEntry == '' || model.isLoading) && (title == 'Next') ? null : onPressed,
+          onPressed: (model.selectedOption == '' ||
+                      model.disableButton ||
+                      model.getFinalPresentEntry == '' ||
+                      model.isLoading) &&
+                  (title == 'Next')
+              ? null
+              : onPressed,
         );
       },
     );
