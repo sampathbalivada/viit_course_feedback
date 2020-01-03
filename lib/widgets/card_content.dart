@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../scoped-model/courses_feedback_model.dart';
 
-import './detail_row.dart';
+import './detail_table.dart';
 
 class CardContent extends StatefulWidget {
   final CoursesFeedbackModel model;
@@ -102,19 +102,20 @@ class _CardContentState extends State<CardContent> {
   _buildFinalDetailsContent(CoursesFeedbackModel model) {
     Map<String, String> details = model.finalEnteryDetails;
     return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          DetailsRow('Regulation', details['Regulation']),
-          SizedBox(height: 5),
-          DetailsRow('Batch', details['Batch']),
-          SizedBox(height: 5),
-          DetailsRow('Branch', details['Branch']),
-          SizedBox(height: 5),
-          DetailsRow('RollNumber', details['RollNumber']),
-          SizedBox(height: 5),
-        ],
-      ),
+      // child: Column(
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: <Widget>[
+      //     DetailsRow('Regulation', details['Regulation']),
+      //     SizedBox(height: 5),
+      //     DetailsRow('Batch', details['Batch']),
+      //     SizedBox(height: 5),
+      //     DetailsRow('Branch', details['Branch']),
+      //     SizedBox(height: 5),
+      //     DetailsRow('RollNumber', details['RollNumber']),
+      //     SizedBox(height: 5),
+      //   ],
+      // ),
+      child: DetailsTable(details: details),
     );
   }
 

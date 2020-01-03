@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viit_course_feedback/widgets/appbar.dart';
-import 'package:viit_course_feedback/widgets/detail_row.dart';
+import 'package:viit_course_feedback/widgets/detail_table.dart';
 
 class TestPage extends StatefulWidget {
   @override
@@ -17,10 +17,12 @@ class _TestPageState extends State<TestPage> {
           width: 400,
           child: Column(
             children: <Widget>[
-              DetailsRow('Regulation', 'VR17'),
-              DetailsRow('Batch', '2017'),
-              DetailsRow('Branch', 'CSE'),
-              DetailsRow('Roll No', '17L31A05T8'),
+              DetailsTable(details: <String, String>{
+                'Abcdef' : 'B',
+                'Bcdefg' : 'B',
+                'Cdefgh' : 'B',
+                'Dhijkl' : 'B',
+              }),
             ],
           ),
         ),
