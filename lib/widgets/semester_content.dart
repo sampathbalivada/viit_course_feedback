@@ -12,11 +12,13 @@ class SemesterContent extends StatelessWidget {
 
   _buildSemButton(String value, BuildContext context) {
     return RaisedButton(
-      color: Colors.purple.shade100,
+      disabledColor: Color(0xFFD1C4E9),
+      color: Theme.of(context).accentColor,
       child: Text(
         value,
         style: TextStyle(
           fontSize: 24,
+          color: Colors.white,
         ),
       ),
       onPressed: () {
