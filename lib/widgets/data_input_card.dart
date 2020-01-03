@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 // import 'custom_button.dart';
@@ -31,29 +33,28 @@ class DataInputCard extends StatefulWidget {
 class _DataInputCardState extends State<DataInputCard> {
   List<double> sliderValues = [0, 0, 0, 0];
 
-  void _showDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Card(
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: Theme.of(context).accentColor, width: 2),
-            ),
-            child: Text('Submission Successfull'),
-          ),
-        );
-      },
-    );
-  }
-
-  void _displaySubmissionAlert() {
-    _showDialog();
-    // Fill Here
-  }
-
   @override
   Widget build(BuildContext context) {
+    if (widget.model.presentSubjectIndex == widget.model.courseIndex.length) {
+      Timer(Duration(seconds: 3), () {
+        Navigator.pushReplacementNamed(context, '/semestersPage');
+      });
+
+      return Scaffold(
+        body: Center(
+          child: AlertDialog(
+            content: Card(
+              shape: RoundedRectangleBorder(
+                side:
+                    BorderSide(color: Theme.of(context).accentColor, width: 2),
+              ),
+              child: Text('Submission Successfull'),
+            ),
+          ),
+        ),
+      );
+    }
+
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
 

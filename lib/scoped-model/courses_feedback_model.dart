@@ -405,6 +405,12 @@ class CoursesFeedbackModel extends Model {
 
     setPresentSubjectIndex(0);
 
+    _responseQuestions.clear();
+    _selectedSemesterQuestions.clear();
+    _courseIndex.clear();
+    _courseOutcomes.clear();
+    feedbackValues.clear();
+
     return http
         .get(
             'https://college-feedback-5c329.firebaseio.com/Questions/${finalEnteries['Regulation']}/$_clickedSemester.json')
@@ -478,7 +484,7 @@ class CoursesFeedbackModel extends Model {
             'https://college-feedback-5c329.firebaseio.com/StudentFeedback/${finalEnteryDetails['Regulation']}/${finalEnteryDetails['Batch']}/$clickedSemester/${finalEnteryDetails['RollNumber']}/${courseIndex[presentSubjectIndex]}.json',
             body: json.encode(subjectFeedback))
         .then((http.Response response) {
-      print('i should be executed before am i waiting');
+      // print('i should be executed before am i waiting');
       _isLoading = false;
       notifyListeners();
       return true;
@@ -499,10 +505,14 @@ class CoursesFeedbackModel extends Model {
 
     await putfeedBack();
 
-    print('am i waiting');
+    // print('am i waiting');
     _courseOutcomes.clear();
     _presentSubjectIndex += 1;
-    fillOutcomesFromDic();
+
+    if (_presentSubjectIndex == courseIndex.length) {
+    } else {
+      fillOutcomesFromDic();
+    }
 
     notifyListeners();
   }
