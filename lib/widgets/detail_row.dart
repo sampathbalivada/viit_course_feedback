@@ -8,17 +8,24 @@ class DetailsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(
-          Icons.check_circle_outline,
-          color: Colors.lightGreen,
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Text(title.padRight(10) + '   -   ' + value.padLeft(10))
+    return Table(
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: <TableRow>[
+        TableRow(
+          children: [
+            Text(
+              '•',
+              style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontSize: 48,
+              ),
+            ),
+            Text(title),
+            SizedBox(width: 2),
+            Text('-'),
+            Text(value, style: TextStyle(color: Theme.of(context).primaryColor))
+          ],
+        )
       ],
     );
   }
