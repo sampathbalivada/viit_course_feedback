@@ -52,7 +52,8 @@ class _WelcomePageState extends State<WelcomePage> {
                             borderRadius: BorderRadius.circular(12)),
                         onPressed: () {
                           // model.setSelectedValue('');
-                          Navigator.pushReplacementNamed(context, '/card');
+                          // Navigator.pushReplacementNamed(context, '/card');
+                          Navigator.pushNamed(context, '/card');
                         },
                       );
               },

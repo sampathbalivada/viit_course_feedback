@@ -126,7 +126,6 @@ class _DataInputCardState extends State<DataInputCard> {
                                     max: 3,
                                     value: sliderValues[index].toDouble(),
                                     activeColor: Theme.of(context).accentColor,
-                                    inactiveColor: Theme.of(context).accentColor,
                                     onChanged: (newValue) {
                                       setState(() {
                                         sliderValues[index] = newValue;

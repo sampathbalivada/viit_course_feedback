@@ -57,32 +57,45 @@ class _CardContentState extends State<CardContent> {
 
   _buildDropDownMenu(CoursesFeedbackModel model) {
     // print(model.getContentList[10]);
-    return Container(
-      height: 300,
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton(
-          value: model.selectedRollNumber,
-          onChanged: (String value) {
-            setState(() {
-              if(value!="Select your registration Id"){
-                model.setSelectedRollNumber(value);
-                model.fillFinalEnteries(value);
-                model.setSelectedOption(value);
-                model.removeDefaultRollNumber();
-              }
-              // print(_selectedOption);
-            });
-          },
-          items: model.getContentList
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem(
-              
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(
+            left: 12,
+            right: 4,
+            top: 2,
+            bottom: 2,
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(color: Theme.of(context).accentColor),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton(
+              value: model.selectedRollNumber,
+              onChanged: (String value) {
+                setState(() {
+                  if (value != "Select your registration Id") {
+                    model.setSelectedRollNumber(value);
+                    model.fillFinalEnteries(value);
+                    model.setSelectedOption(value);
+                    model.removeDefaultRollNumber();
+                  }
+                  // print(_selectedOption);
+                });
+              },
+              items: model.getContentList
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
