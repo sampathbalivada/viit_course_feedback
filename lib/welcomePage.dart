@@ -53,7 +53,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         onPressed: () {
                           // model.setSelectedValue('');
                           // Navigator.pushReplacementNamed(context, '/card');
-                          Navigator.pushNamed(context, '/card');
+                          Navigator.pushReplacementNamed(context, '/card');
                         },
                       );
               },

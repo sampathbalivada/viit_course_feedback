@@ -12,16 +12,16 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: DataInputCard(
-        subjectName: 'Physics',
-        courseOutcomes: [
-          'Course Outcome 1',
-          'Course Outcome 2',
-          'Course Outcome 3',
-          'Course Outcome 4',
-        ],
-        onNextButtonPressed: () {},
-      ),
+      // body: DataInputCard(
+      //   // subjectName: 'Physics',
+      //   // courseOutcomes: [
+      //   //   'Course Outcome 1',
+      //   //   'Course Outcome 2',
+      //   //   'Course Outcome 3',
+      //   //   'Course Outcome 4',
+      //   // ],
+      //   // onNextButtonPressed: () {},
+      // ),
     );
   }
 }

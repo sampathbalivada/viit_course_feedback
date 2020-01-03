@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 
 import 'custom_button.dart';
 
-class DataInputCard extends StatefulWidget {
-  final String subjectName;
-  final Function onNextButtonPressed;
-  final List<String> courseOutcomes;
+import '../scoped-model/courses_feedback_model.dart';
 
-  DataInputCard(
-      {@required this.subjectName,
-      @required this.onNextButtonPressed,
-      @required this.courseOutcomes});
+class DataInputCard extends StatefulWidget {
+  // final String subjectName;
+  // final Function onNextButtonPressed;
+  // final List<String> courseOutcomes;
+
+  // DataInputCard(
+  //     {@required this.subjectName,
+  //     @required this.onNextButtonPressed,
+  //     @required this.courseOutcomes});
+
+  final CoursesFeedbackModel model;
+
+  DataInputCard(this.model);
+
+  // String subjectName;
+  // Function onNextButtonPressed;
+  // List<String> courseOutcomes;
 
   @override
   _DataInputCardState createState() => _DataInputCardState();
@@ -34,7 +44,8 @@ class _DataInputCardState extends State<DataInputCard> {
               children: <Widget>[
                 Flexible(
                   child: Text(
-                    'Year - 3',
+                    'Year - ' + widget.model.clickedSemester[0],
+                    // 'Year',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -43,7 +54,8 @@ class _DataInputCardState extends State<DataInputCard> {
                 ),
                 Flexible(
                   child: Text(
-                    'Semester - 1',
+                    'Semester - ' + widget.model.clickedSemester[4],
+                    // 'Semester',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -52,7 +64,8 @@ class _DataInputCardState extends State<DataInputCard> {
                 ),
                 Flexible(
                   child: Text(
-                    '17L31A05T8',
+                    widget.model.finalEnteryDetails['RollNumber'],
+                    // '17L31A0501',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -78,7 +91,7 @@ class _DataInputCardState extends State<DataInputCard> {
                     children: <Widget>[
                       SizedBox(height: _height * 0.05),
                       Text(
-                        widget.subjectName,
+                        "Subject Name",
                         style: TextStyle(fontSize: 24),
                       ),
                       Divider(
@@ -113,7 +126,7 @@ class _DataInputCardState extends State<DataInputCard> {
                                 Flexible(
                                   flex: 4,
                                   child: Text(
-                                    widget.courseOutcomes[index],
+                                    "Course Outcomes",
                                     style: TextStyle(fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -144,7 +157,9 @@ class _DataInputCardState extends State<DataInputCard> {
                                     width: 24,
                                     child: Center(
                                       child: Text(
-                                        ' ' + sliderValues[index].toString() + ' ',
+                                        ' ' +
+                                            sliderValues[index].toString() +
+                                            ' ',
                                         style: TextStyle(fontSize: 18),
                                       ),
                                     ),
@@ -160,7 +175,7 @@ class _DataInputCardState extends State<DataInputCard> {
                           Flexible(child: Container()),
                           CustomButton(
                             title: 'Next',
-                            onPressed: widget.onNextButtonPressed,
+                            onPressed: () {},
                           )
                         ],
                       )

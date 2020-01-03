@@ -159,7 +159,7 @@ class CoursesFeedbackModel extends Model {
       var rollJson = jsonDecode(response.body);
 
       _rollNumbers = rollJson != null ? List.from(rollJson) : null;
-      _rollNumbers.insert(0,"Select your registration Id");
+      _rollNumbers.insert(0, "Select your registration Id");
       // print(_rollNumbers);
 
       _selectedRollNumber = _rollNumbers[0];
@@ -198,7 +198,7 @@ class CoursesFeedbackModel extends Model {
       finalEnteries['RollNumber'] = '';
     } else if (presentInput == 'Registration Number') {
       _displayBackButton = true;
-      _rollNumbers.insert(0,"Select your registration Id");
+      _rollNumbers.insert(0, "Select your registration Id");
       _selectedRollNumber = _rollNumbers[0];
       finalEnteries['RollNumber'] = '';
     } else {
@@ -357,5 +357,69 @@ class CoursesFeedbackModel extends Model {
     });
     _semesters = tempList;
     // print(_semesters);
+  }
+
+  // From here we will be handling semeseters page and input data page
+
+  Map<String, dynamic> _responseQuestions = {};
+
+  List<Map<String, dynamic>> _selectedSemesterQuestions = [];
+
+  List<String> _courseIndex = [];
+
+  String _clickedSemester;
+
+  String get clickedSemester {
+    return _clickedSemester;
+  }
+
+  List<String> get courseIndex {
+    return _courseIndex;
+  }
+
+  List<Map<String, dynamic>> get selectedSemesterQuestions {
+    return _selectedSemesterQuestions;
+  }
+
+  Future<bool> fetchQuestions() {
+    _isLoading = true;
+    notifyListeners();
+
+    return http
+        .get(
+            'https://college-feedback-5c329.firebaseio.com/Questions/${finalEnteries['Regulation']}/$_clickedSemester.json')
+        .then((http.Response response) {
+      _responseQuestions = json.decode(response.body);
+      // print(_responseQuestions);
+
+      List<Map<String, dynamic>> temp = [];
+      List<String> temp1 = [];
+
+      _responseQuestions.forEach((String key, dynamic value) {
+        temp.add(value);
+        temp1.add(key);
+      });
+
+      _selectedSemesterQuestions = temp;
+      _courseIndex = temp1;
+
+      print(_selectedSemesterQuestions);
+      print(_courseIndex);
+
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    }).catchError((error) {
+      print('There is an error');
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    });
+  }
+
+  void setClickedSemester(String value) async {
+    _clickedSemester = value;
+    await fetchQuestions();
+    notifyListeners();
   }
 }
