@@ -60,31 +60,33 @@ class _CustomCardState extends State<CustomCard> {
                   child: widget.content,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     widget.model.displayBackButton
-                        ? CustomButton(
-                            title: 'Back',
-                            onPressed: () {
-                              widget.onBackButtonPressed();
-                              // Navigator.of(context).pop();
-                              // widget.model.resetState();
-                            },
-                          )
-                        : Container(
-                            width: 12,
-                            child: Text(
-                              'NaN',
-                              style: TextStyle(color: Colors.white),
+                        ? Flexible(
+                            flex: 2,
+                            child: CustomButton(
+                              title: 'Back',
+                              onPressed: () {
+                                widget.onBackButtonPressed();
+                                // Navigator.of(context).pop();
+                                // widget.model.resetState();
+                              },
                             ),
+                          )
+                        : Spacer(
+                            flex: 2,
                           ),
-                    CustomButton(
-                      title: 'Next',
-                      onPressed: () {
-                        widget.onNextButtonPressed();
-                        // Navigator.pushNamed(context, '/card');
-                        // widget.model.resetState();
-                      },
+                    Flexible(
+                      flex: 2,
+                      child: CustomButton(
+                        title: 'Next',
+                        onPressed: () {
+                          widget.onNextButtonPressed();
+                          // Navigator.pushNamed(context, '/card');
+                          // widget.model.resetState();
+                        },
+                      ),
                     )
                   ],
                 )
