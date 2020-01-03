@@ -366,15 +366,33 @@ class CoursesFeedbackModel extends Model {
   List<Map<String, dynamic>> _selectedSemesterQuestions = [];
 
   List<String> _courseIndex = [];
+  List<String> _courseOutcomes = [];
+
+  List<int> feedbackValues = [];
+
+  int _presentSubjectIndex;
 
   String _clickedSemester;
+  String _presentSubjectName;
+
+  int get presentSubjectIndex {
+    return _presentSubjectIndex;
+  }
 
   String get clickedSemester {
     return _clickedSemester;
   }
 
+  String get presentSubjectName {
+    return _presentSubjectName;
+  }
+
   List<String> get courseIndex {
     return _courseIndex;
+  }
+
+  List<String> get courseOutcomes {
+    return _courseOutcomes;
   }
 
   List<Map<String, dynamic>> get selectedSemesterQuestions {
@@ -384,6 +402,8 @@ class CoursesFeedbackModel extends Model {
   Future<bool> fetchQuestions() {
     _isLoading = true;
     notifyListeners();
+
+    setPresentSubjectIndex(0);
 
     return http
         .get(
@@ -406,6 +426,8 @@ class CoursesFeedbackModel extends Model {
       print(_selectedSemesterQuestions);
       print(_courseIndex);
 
+      fillOutcomesFromDic();
+
       _isLoading = false;
       notifyListeners();
       return true;
@@ -420,6 +442,68 @@ class CoursesFeedbackModel extends Model {
   void setClickedSemester(String value) async {
     _clickedSemester = value;
     await fetchQuestions();
+    notifyListeners();
+  }
+
+  void setPresentSubjectIndex(int index) {
+    _presentSubjectIndex = index;
+  }
+
+  void fillOutcomesFromDic() {
+    _courseOutcomes
+        .add(_selectedSemesterQuestions[_presentSubjectIndex]['CO1']);
+    _courseOutcomes
+        .add(_selectedSemesterQuestions[_presentSubjectIndex]['CO2']);
+    _courseOutcomes
+        .add(_selectedSemesterQuestions[_presentSubjectIndex]['CO3']);
+    _courseOutcomes
+        .add(_selectedSemesterQuestions[_presentSubjectIndex]['CO4']);
+    _presentSubjectName =
+        _selectedSemesterQuestions[_presentSubjectIndex]['Subject'];
+  }
+
+  Future<bool> putfeedBack() {
+    _isLoading = true;
+    notifyListeners();
+
+    Map<String, dynamic> subjectFeedback = {
+      'C01': feedbackValues[0],
+      'CO2': feedbackValues[1],
+      'CO3': feedbackValues[2],
+      'CO4': feedbackValues[3],
+    };
+
+    return http
+        .put(
+            'https://college-feedback-5c329.firebaseio.com/StudentFeedback/${finalEnteryDetails['Regulation']}/${finalEnteryDetails['Batch']}/$clickedSemester/${finalEnteryDetails['RollNumber']}/${courseIndex[presentSubjectIndex]}.json',
+            body: json.encode(subjectFeedback))
+        .then((http.Response response) {
+      print('i should be executed before am i waiting');
+      _isLoading = false;
+      notifyListeners();
+      return true;
+    }).catchError((error) {
+      print('There is an error');
+      _isLoading = false;
+      notifyListeners();
+      return false;
+    });
+  }
+
+  void onNextInputButton(List<double> values) async {
+    List<int> temp = [];
+    values.forEach((double value) {
+      temp.add(value.toInt());
+    });
+    feedbackValues = temp;
+
+    await putfeedBack();
+
+    print('am i waiting');
+
+    _presentSubjectIndex += 1;
+    fillOutcomesFromDic();
+
     notifyListeners();
   }
 }

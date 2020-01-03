@@ -23,6 +23,7 @@ class SemesterContent extends StatelessWidget {
         // send clicked semester to scoped model
         model.setClickedSemester(value);
         // push replacement to feedback page
+
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'custom_button.dart';
+// import 'custom_button.dart';
+
+import './data_input_button.dart';
 
 import '../scoped-model/courses_feedback_model.dart';
 
@@ -91,7 +93,7 @@ class _DataInputCardState extends State<DataInputCard> {
                     children: <Widget>[
                       SizedBox(height: _height * 0.05),
                       Text(
-                        "Subject Name",
+                        widget.model.presentSubjectName,
                         style: TextStyle(fontSize: 24),
                       ),
                       Divider(
@@ -111,6 +113,8 @@ class _DataInputCardState extends State<DataInputCard> {
                           ),
                           itemCount: 4,
                           itemBuilder: (context, index) {
+                            // print(widget.model.courseOutcomes[index]);
+                            // print();
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -126,7 +130,7 @@ class _DataInputCardState extends State<DataInputCard> {
                                 Flexible(
                                   flex: 4,
                                   child: Text(
-                                    "Course Outcomes",
+                                    widget.model.courseOutcomes[index],
                                     style: TextStyle(fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -173,9 +177,11 @@ class _DataInputCardState extends State<DataInputCard> {
                       Row(
                         children: <Widget>[
                           Flexible(child: Container()),
-                          CustomButton(
+                          DetailsButton(
                             title: 'Next',
-                            onPressed: () {},
+                            onPressed: () {
+                              widget.model.onNextInputButton(sliderValues);
+                            },
                           )
                         ],
                       )
