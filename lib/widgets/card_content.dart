@@ -68,6 +68,7 @@ class _CardContentState extends State<CardContent> {
                 model.setSelectedRollNumber(value);
                 model.fillFinalEnteries(value);
                 model.setSelectedOption(value);
+                model.removeDefaultRollNumber();
               }
               // print(_selectedOption);
             });

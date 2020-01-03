@@ -198,6 +198,8 @@ class CoursesFeedbackModel extends Model {
       finalEnteries['RollNumber'] = '';
     } else if (presentInput == 'Registration Number') {
       _displayBackButton = true;
+      _rollNumbers.insert(0,"Select your registration Id");
+      _selectedRollNumber = _rollNumbers[0];
       finalEnteries['RollNumber'] = '';
     } else {
       _displayBackButton = true;
@@ -324,6 +326,10 @@ class CoursesFeedbackModel extends Model {
   void setSelectedOption(String value) {
     _selectedOption = value;
     notifyListeners();
+  }
+
+  void removeDefaultRollNumber() {
+    _rollNumbers.remove('Select your registration Id');
   }
 
   void extractSemesters() {
