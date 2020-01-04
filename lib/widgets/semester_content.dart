@@ -15,36 +15,42 @@ class SemesterContent extends StatelessWidget {
       disabledColor: Color(0xFFD1C4E9),
       color: Theme.of(context).accentColor,
       child: Text(
-        value,
+        value[0] + ' - ' + value[2],
         style: TextStyle(
           fontSize: 24,
           color: Colors.white,
         ),
       ),
-      onPressed: () {
-        // send clicked semester to scoped model
-        model.setClickedSemester(value);
-        // push replacement to feedback page
+      onPressed: model.isFilled[value]
+          ? null
+          : () {
+              // send clicked semester to scoped model
+              model.setClickedSemester(value);
+              // push replacement to feedback page
 
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => FeedBackPage()));
-      },
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => FeedBackPage()));
+            },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 20),
-      width: width,
-      child: ListView.builder(
-        itemBuilder: (BuildContext context, int index) =>
-            _buildSemButton(model.allSemesters[index], context),
-        itemCount: model.allSemesters.length,
-      ),
-    );
+    return model.isLoading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : Container(
+            padding: EdgeInsets.only(top: 20),
+            width: width,
+            child: ListView.builder(
+              itemBuilder: (BuildContext context, int index) =>
+                  _buildSemButton(model.allSemesters[index], context),
+              itemCount: model.allSemesters.length,
+            ),
+          );
   }
 }

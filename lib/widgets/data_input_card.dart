@@ -67,7 +67,7 @@ class _DataInputCardState extends State<DataInputCard> {
                 ),
                 Flexible(
                   child: Text(
-                    'Semester - ' + widget.model.clickedSemester[4],
+                    'Semester - ' + widget.model.clickedSemester[2],
                     // 'Semester',
                     style: TextStyle(fontSize: 16),
                   ),

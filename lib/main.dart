@@ -36,10 +36,12 @@ class _MyAppState extends State<MyApp> {
         ),
         routes: {
           '/card': (BuildContext context) => CustomCardManager(),
-          '/semestersPage': (BuildContext context) => SemestersPage(),
+          '/semestersPage': (BuildContext context) => SemestersPage(_model),
           '/testPage': (BuildContext context) => TestPage()
         },
-        home: AppHome(model: _model,),
+        home: AppHome(
+          model: _model,
+        ),
       ),
     );
   }

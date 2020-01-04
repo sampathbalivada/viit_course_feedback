@@ -410,6 +410,7 @@ class CoursesFeedbackModel extends Model {
     _courseIndex.clear();
     _courseOutcomes.clear();
     feedbackValues.clear();
+    isFilled.clear();
 
     return http
         .get(
@@ -515,5 +516,59 @@ class CoursesFeedbackModel extends Model {
     }
 
     notifyListeners();
+  }
+
+  Map<String, bool> isFilled = {};
+
+  void checkFilledStatus() {
+    _isLoading = true;
+    notifyListeners();
+
+    print(_isLoading);
+    print('Before loop');
+
+    allSemesters.forEach((String value) async {
+      // await checkfeedBack(value).then((bool boolean) {
+      //   temp.add(boolean);
+      //   print(temp);
+      // });
+
+      await checkfeedBack(value).then((bool value) {
+        print(isFilled.length);
+        if (isFilled.length == allSemesters.length) {
+          print(isFilled);
+          _isLoading = false;
+          print(_isLoading);
+          notifyListeners();
+        }
+      });
+    });
+  }
+
+  Future<bool> checkfeedBack(String semester) {
+    print(
+        'https://college-feedback-5c329.firebaseio.com/StudentFeedback/${finalEnteryDetails['Regulation']}/${finalEnteryDetails['Batch']}/$semester/${finalEnteryDetails['RollNumber']}.json');
+    return http
+        .get(
+            'https://college-feedback-5c329.firebaseio.com/StudentFeedback/${finalEnteryDetails['Regulation']}/${finalEnteryDetails['Batch']}/$semester/${finalEnteryDetails['RollNumber']}.json')
+        .then((http.Response response) {
+      print(semester);
+      print(response.body);
+      // print('return true');
+
+      if (response.body == "null") {
+        isFilled[semester] = false;
+      } else {
+        isFilled[semester] = true;
+      }
+
+      return true;
+    }).catchError((error) {
+      print(semester);
+      print('There is an error');
+      // print('return false');
+      // isFilled.add(false);
+      return false;
+    });
   }
 }
