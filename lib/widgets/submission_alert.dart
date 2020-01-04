@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SubmissionAlert extends StatelessWidget {
+  final String title;
+
+  SubmissionAlert(this.title);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,7 @@ class SubmissionAlert extends StatelessWidget {
           content: Row(
             children: <Widget>[
               Text(
-                'Submission Successfull',
+                title,
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(width: 12),

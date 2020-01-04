@@ -41,7 +41,7 @@ class _DataInputCardState extends State<DataInputCard> {
         Navigator.pushReplacementNamed(context, '/semestersPage');
       });
 
-      return SubmissionAlert();
+      return SubmissionAlert('Submission Successfull');
     }
 
     final _height = MediaQuery.of(context).size.height;
