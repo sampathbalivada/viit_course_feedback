@@ -39,18 +39,20 @@ class SemesterContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return model.isLoading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Container(
-            padding: EdgeInsets.only(top: 20),
-            width: width,
-            child: ListView.builder(
-              itemBuilder: (BuildContext context, int index) =>
-                  _buildSemButton(model.allSemesters[index], context),
-              itemCount: model.allSemesters.length,
-            ),
-          );
+    return
+        // model.isLoading
+        // ? Center(
+        //     child: CircularProgressIndicator(),
+        //   )
+        // :
+        Container(
+      padding: EdgeInsets.only(top: 20),
+      width: width,
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) =>
+            _buildSemButton(model.allSemesters[index], context),
+        itemCount: model.allSemesters.length,
+      ),
+    );
   }
 }

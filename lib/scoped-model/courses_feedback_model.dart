@@ -539,6 +539,7 @@ class CoursesFeedbackModel extends Model {
           print(isFilled);
           _isLoading = false;
           print(_isLoading);
+          areAllTure();
           notifyListeners();
         }
       });
@@ -570,5 +571,25 @@ class CoursesFeedbackModel extends Model {
       // isFilled.add(false);
       return false;
     });
+  }
+
+  bool _areAllTrue = false;
+
+  bool get areAllTrueGetter {
+    return _areAllTrue;
+  }
+
+  void areAllTure() {
+    int count = 0;
+    isFilled.forEach((String key, bool value) {
+      if (value == true) {
+        count += 1;
+      }
+    });
+    if (count == isFilled.length) {
+      _areAllTrue = true;
+    } else {
+      _areAllTrue = false;
+    }
   }
 }
