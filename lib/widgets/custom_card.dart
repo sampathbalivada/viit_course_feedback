@@ -62,20 +62,21 @@ class _CustomCardState extends State<CustomCard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    widget.model.displayBackButton
-                        ? Flexible(
+                    Flexible(
                             flex: 2,
-                            child: CustomButton(
+                            child: widget.model.displayBackButton ? CustomButton(
                               title: 'Back',
                               onPressed: () {
                                 widget.onBackButtonPressed();
                                 // Navigator.of(context).pop();
                                 // widget.model.resetState();
                               },
+                            ) : RaisedButton(
+                              onPressed: null,
+                              disabledColor: Colors.white,
+                              elevation: 0,
+                              child: Text(''),
                             ),
-                          )
-                        : Spacer(
-                            flex: 2,
                           ),
                     Flexible(
                       flex: 2,
