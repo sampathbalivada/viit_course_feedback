@@ -119,8 +119,8 @@ class _DataInputCardState extends State<DataInputCard> {
                           padding: EdgeInsets.only(
                             left: _width * 0.1,
                             right: _width * 0.1,
-                            top: _height * 0.08,
-                            bottom: _height * 0.08,
+                            top: _height * 0.05,
+                            bottom: _height * 0.05,
                           ),
                           itemCount: 4,
                           itemBuilder: (context, index) {

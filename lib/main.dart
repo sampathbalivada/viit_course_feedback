@@ -57,12 +57,13 @@ class AppHome extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       body: WelcomePage(model),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('/testPage');
-        },
-        child: Text('Test'),
-      ),
+      // Uncomment these lines to display test page button - Use for Widget Tests
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).pushNamed('/testPage');
+      //   },
+      //   child: Text('Test'),
+      // ),
     );
   }
 }
