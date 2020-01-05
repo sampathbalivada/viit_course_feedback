@@ -12,27 +12,34 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: AlertDialog(
-          backgroundColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: Theme.of(context).accentColor,
-              width: 2,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.9,
+          width: MediaQuery.of(context).size.width * 0.95,
+          child: Card(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+                buildText(context, '0 - Poor'),
+                buildText(context, '|'),
+                buildText(context, '1 - Average'),
+                buildText(context, '|'),
+                buildText(context, '2 - Good'),
+                buildText(context, '|'),
+                buildText(context, '3 - Excellent'),
+                SizedBox(width: MediaQuery.of(context).size.width * 0.6)
+              ],
             ),
-          ),
-          content: Row(
-            children: <Widget>[
-              Text(
-                'Submission Successfull',
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(width: 12),
-              Icon(Icons.done_all, color: Theme.of(context).accentColor)
-            ],
           ),
         ),
       ),
+    );
+  }
+
+  Text buildText(BuildContext context, String data) {
+    return Text(
+      data,
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 18),
     );
   }
 }

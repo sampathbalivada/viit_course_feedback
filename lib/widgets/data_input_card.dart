@@ -186,6 +186,22 @@ class _DataInputCardState extends State<DataInputCard> {
                         ),
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.05),
+                          buildText(context, '0 - Poor'),
+                          buildText(context, '|'),
+                          buildText(context, '1 - Average'),
+                          buildText(context, '|'),
+                          buildText(context, '2 - Good'),
+                          buildText(context, '|'),
+                          buildText(context, '3 - Excellent'),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6)
+                        ],
+                      ),
+                      Row(
                         children: <Widget>[
                           Flexible(child: Container()),
                           DetailsButton(
@@ -204,6 +220,13 @@ class _DataInputCardState extends State<DataInputCard> {
           ),
         ],
       ),
+    );
+  }
+
+  Text buildText(BuildContext context, String data) {
+    return Text(
+      data,
+      style: TextStyle(color: Theme.of(context).accentColor, fontSize: 18),
     );
   }
 }
