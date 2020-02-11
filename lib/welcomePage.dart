@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -30,10 +31,8 @@ class _WelcomePageState extends State<WelcomePage> {
         padding: EdgeInsets.symmetric(vertical: _height / 4),
         child: Column(
           children: <Widget>[
-            Text(
-              'Welcome',
-              style: TextStyle(fontSize: 60),
-            ),
+            AutoSizeText('Welcome',
+                style: TextStyle(fontSize: 60), maxLines: 1),
             SizedBox(
               height: 20,
             ),
@@ -43,9 +42,10 @@ class _WelcomePageState extends State<WelcomePage> {
                 return model.isLoading
                     ? CircularProgressIndicator()
                     : RaisedButton(
-                        child: Text(
+                        child: AutoSizeText(
                           'Click Here',
                           style: TextStyle(color: Colors.white, fontSize: 16),
+                          maxLines: 1,
                         ),
                         color: Theme.of(context).accentColor,
                         shape: RoundedRectangleBorder(

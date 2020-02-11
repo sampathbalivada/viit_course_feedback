@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../scoped-model/courses_feedback_model.dart';
@@ -14,8 +15,9 @@ class SemesterContent extends StatelessWidget {
     return RaisedButton(
       disabledColor: Color(0xFFD1C4E9),
       color: Theme.of(context).accentColor,
-      child: Text(
+      child: AutoSizeText(
         value[0] + ' - ' + value[2],
+        maxLines: 1,
         style: TextStyle(
           fontSize: 24,
           color: Colors.white,

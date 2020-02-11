@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import './widgets/semester_content.dart';
@@ -57,9 +58,10 @@ class _SemestersPageState extends State<SemestersPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 SizedBox(height: _height * 0.05),
-                                Text(
+                                AutoSizeText(
                                   'SEMESTERS',
                                   style: TextStyle(fontSize: 24),
+                                  maxLines: 1,
                                 ),
                                 Divider(
                                   height: 4,

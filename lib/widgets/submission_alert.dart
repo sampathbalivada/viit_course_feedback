@@ -1,3 +1,4 @@
+// import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class SubmissionAlert extends StatelessWidget {
@@ -22,6 +23,7 @@ class SubmissionAlert extends StatelessWidget {
             children: <Widget>[
               Text(
                 title,
+                // maxLines: 1,
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(width: 12),

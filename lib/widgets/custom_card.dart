@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../scoped-model/courses_feedback_model.dart';
@@ -47,8 +48,9 @@ class _CustomCardState extends State<CustomCard> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(height: _height * 0.05),
-                Text(
+                AutoSizeText(
                   widget.title,
+                  maxLines: 1,
                   style: TextStyle(fontSize: 24),
                 ),
                 Divider(
@@ -63,21 +65,26 @@ class _CustomCardState extends State<CustomCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Flexible(
-                            flex: 2,
-                            child: widget.model.displayBackButton ? CustomButton(
+                      flex: 2,
+                      child: widget.model.displayBackButton
+                          ? CustomButton(
                               title: 'Back',
                               onPressed: () {
                                 widget.onBackButtonPressed();
                                 // Navigator.of(context).pop();
                                 // widget.model.resetState();
                               },
-                            ) : RaisedButton(
+                            )
+                          : RaisedButton(
                               onPressed: null,
                               disabledColor: Colors.white,
                               elevation: 0,
-                              child: Text(''),
+                              child: AutoSizeText(
+                                '',
+                                maxLines: 1,
+                              ),
                             ),
-                          ),
+                    ),
                     Flexible(
                       flex: 2,
                       child: CustomButton(

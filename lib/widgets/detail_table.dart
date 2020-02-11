@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class DetailsTable extends StatelessWidget {
@@ -37,33 +38,42 @@ class DetailsTable extends StatelessWidget {
       contentList.add(
         TableRow(
           children: [
-            Text(
+            AutoSizeText(
               '•',
+              maxLines: 1,
               style: TextStyle(
                 color: Theme.of(context).accentColor,
                 fontSize: 32,
               ),
             ),
-            Text(k),
+            AutoSizeText(
+              k,
+              maxLines: 1,
+            ),
             // SizedBox(width: 2),
-            Text('-'),
-            Text(
+            AutoSizeText(' -', maxLines: 1),
+            AutoSizeText(
               v,
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
+              maxLines: 1,
+              // style: TextStyle(color: Theme.of(context).primaryColor),
             )
           ],
         ),
       );
     });
+    // print(contentList);
     return contentList;
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 48, right: 48),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      padding: const EdgeInsets.only(left: 48, right: 48, top: 25),
+      child: ListView(
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Table(
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,

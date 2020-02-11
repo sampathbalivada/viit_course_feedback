@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 AppBar buildAppBar() {
@@ -17,7 +18,10 @@ AppBar buildAppBar() {
           width: 10,
           height: 10,
         ),
-        Text('VIIT COURSES FEEDBACK')
+        AutoSizeText(
+          'VIIT COURSES FEEDBACK',
+          maxLines: 1,
+        )
       ],
     ),
   );

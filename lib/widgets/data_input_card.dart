@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:viit_course_feedback/widgets/submission_alert.dart';
 
@@ -56,9 +57,10 @@ class _DataInputCardState extends State<DataInputCard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     'Year - ' + widget.model.clickedSemester[0],
                     // 'Year',
+                    maxLines: 1,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -66,9 +68,10 @@ class _DataInputCardState extends State<DataInputCard> {
                   color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     'Semester - ' + widget.model.clickedSemester[2],
                     // 'Semester',
+                    maxLines: 1,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -76,9 +79,10 @@ class _DataInputCardState extends State<DataInputCard> {
                   color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                  child: Text(
+                  child: AutoSizeText(
                     widget.model.finalEnteryDetails['RollNumber'],
                     // '17L31A0501',
+                    maxLines: 1,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -103,9 +107,10 @@ class _DataInputCardState extends State<DataInputCard> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(height: _height * 0.05),
-                      Text(
+                      AutoSizeText(
                         widget.model.presentSubjectName,
                         style: TextStyle(fontSize: 24),
+                        maxLines: 1,
                       ),
                       Divider(
                         height: 4,
@@ -131,8 +136,9 @@ class _DataInputCardState extends State<DataInputCard> {
                               children: <Widget>[
                                 Flexible(
                                   flex: 2,
-                                  child: Text(
+                                  child: AutoSizeText(
                                     '•',
+                                    maxLines: 1,
                                     style: TextStyle(
                                         color: Theme.of(context).accentColor,
                                         fontSize: 48),
@@ -140,10 +146,11 @@ class _DataInputCardState extends State<DataInputCard> {
                                 ),
                                 Flexible(
                                   flex: 4,
-                                  child: Text(
+                                  child: AutoSizeText(
                                     widget.model.courseOutcomes[index],
                                     style: TextStyle(fontSize: 18),
                                     overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
                                   ),
                                 ),
                                 Flexible(
@@ -171,11 +178,12 @@ class _DataInputCardState extends State<DataInputCard> {
                                   child: Container(
                                     width: 24,
                                     child: Center(
-                                      child: Text(
+                                      child: AutoSizeText(
                                         ' ' +
                                             sliderValues[index].toString() +
                                             ' ',
                                         style: TextStyle(fontSize: 18),
+                                        maxLines: 1,
                                       ),
                                     ),
                                   ),
@@ -223,10 +231,11 @@ class _DataInputCardState extends State<DataInputCard> {
     );
   }
 
-  Text buildText(BuildContext context, String data) {
-    return Text(
+  AutoSizeText buildText(BuildContext context, String data) {
+    return AutoSizeText(
       data,
       style: TextStyle(color: Theme.of(context).accentColor, fontSize: 18),
+      maxLines: 1,
     );
   }
 }
