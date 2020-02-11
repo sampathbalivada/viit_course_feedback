@@ -193,21 +193,25 @@ class _DataInputCardState extends State<DataInputCard> {
                           },
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.05),
-                          buildText(context, '0 - Poor'),
-                          buildText(context, '|'),
-                          buildText(context, '1 - Average'),
-                          buildText(context, '|'),
-                          buildText(context, '2 - Good'),
-                          buildText(context, '|'),
-                          buildText(context, '3 - Excellent'),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.6)
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.05),
+                            buildText(context, '0 - Poor'),
+                            buildText(context, '|'),
+                            buildText(context, '1 - Average'),
+                            buildText(context, '|'),
+                            buildText(context, '2 - Good'),
+                            buildText(context, '|'),
+                            buildText(context, '3 - Excellent'),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.6)
+                          ],
+                        ),
                       ),
                       Row(
                         children: <Widget>[

@@ -11,29 +11,6 @@ class DetailsTable extends StatelessWidget {
   List<TableRow> buildDetailRows(BuildContext context) {
     List<TableRow> contentList = [];
 
-    // for (var i = 0; i < 4; i++) {
-    //   contentList.add(
-    //     TableRow(
-    //       children: [
-    //         Text(
-    //           '•',
-    //           style: TextStyle(
-    //             color: Theme.of(context).accentColor,
-    //             fontSize: 48,
-    //           ),
-    //         ),
-    //         Text(title[i]),
-    //         SizedBox(width: 2),
-    //         Text('-'),
-    //         Text(
-    //           value[i],
-    //           style: TextStyle(color: Theme.of(context).primaryColor),
-    //         )
-    //       ],
-    //     ),
-    //   );
-    // }
-
     details.forEach((k, v) {
       contentList.add(
         TableRow(
