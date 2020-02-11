@@ -135,8 +135,6 @@ class _CardContentState extends State<CardContent> {
 
   @override
   Widget build(BuildContext context) {
-    // print('Hehe');
-    // print('rebuilding');
     return Container(
       child: pageContent(widget.model),
     );
