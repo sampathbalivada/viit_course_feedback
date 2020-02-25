@@ -19,7 +19,7 @@ AppBar buildAppBar() {
           height: 10,
         ),
         AutoSizeText(
-          'VIIT COURSES FEEDBACK',
+          'Department of Computer Science and Engineering',
           maxLines: 1,
         )
       ],

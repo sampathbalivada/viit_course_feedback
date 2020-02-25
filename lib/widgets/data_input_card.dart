@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:viit_course_feedback/widgets/submission_alert.dart';
 
@@ -57,7 +56,7 @@ class _DataInputCardState extends State<DataInputCard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Flexible(
-                  child: AutoSizeText(
+                  child: Text(
                     'Year - ' + widget.model.clickedSemester[0],
                     // 'Year',
                     maxLines: 1,
@@ -68,7 +67,7 @@ class _DataInputCardState extends State<DataInputCard> {
                   color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                  child: AutoSizeText(
+                  child: Text(
                     'Semester - ' + widget.model.clickedSemester[2],
                     // 'Semester',
                     maxLines: 1,
@@ -79,7 +78,7 @@ class _DataInputCardState extends State<DataInputCard> {
                   color: Theme.of(context).accentColor,
                 ),
                 Flexible(
-                  child: AutoSizeText(
+                  child: Text(
                     widget.model.finalEnteryDetails['RollNumber'],
                     // '17L31A0501',
                     maxLines: 1,
@@ -107,7 +106,7 @@ class _DataInputCardState extends State<DataInputCard> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(height: _height * 0.05),
-                      AutoSizeText(
+                      Text(
                         widget.model.presentSubjectName,
                         style: TextStyle(fontSize: 24),
                         maxLines: 1,
@@ -134,39 +133,36 @@ class _DataInputCardState extends State<DataInputCard> {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Flexible(
-                                  flex: 2,
-                                  child: AutoSizeText(
-                                    '•',
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        color: Theme.of(context).accentColor,
-                                        fontSize: 48),
-                                  ),
+                                Text(
+                                  '•',
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: 48),
                                 ),
-                                Flexible(
-                                  flex: 4,
-                                  child: AutoSizeText(
-                                    widget.model.courseOutcomes[index],
+                                SizedBox(
+                                  width: _width * 0.4,
+                                  child: Text(
+                                    "Are you able to " +
+                                        widget.model.courseOutcomes[index][0]
+                                            .toLowerCase() +
+                                        widget.model.courseOutcomes[index].substring(1),
                                     style: TextStyle(fontSize: 18),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
+                                    overflow: TextOverflow.visible,
+                                    maxLines: 3,
                                   ),
                                 ),
-                                Flexible(
-                                  flex: 2,
-                                  child: Slider(
-                                    label: sliderValues[index].toString(),
-                                    divisions: 3,
-                                    max: 3,
-                                    value: sliderValues[index].toDouble(),
-                                    activeColor: Theme.of(context).accentColor,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        sliderValues[index] = newValue;
-                                      });
-                                    },
-                                  ),
+                                Slider(
+                                  label: sliderValues[index].toString(),
+                                  divisions: 3,
+                                  max: 3,
+                                  value: sliderValues[index].toDouble(),
+                                  activeColor: Theme.of(context).accentColor,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      sliderValues[index] = newValue;
+                                    });
+                                  },
                                 ),
                                 Card(
                                   shape: RoundedRectangleBorder(
@@ -178,7 +174,7 @@ class _DataInputCardState extends State<DataInputCard> {
                                   child: Container(
                                     width: 24,
                                     child: Center(
-                                      child: AutoSizeText(
+                                      child: Text(
                                         ' ' +
                                             sliderValues[index].toString() +
                                             ' ',
@@ -235,8 +231,8 @@ class _DataInputCardState extends State<DataInputCard> {
     );
   }
 
-  AutoSizeText buildText(BuildContext context, String data) {
-    return AutoSizeText(
+  Text buildText(BuildContext context, String data) {
+    return Text(
       data,
       style: TextStyle(color: Theme.of(context).accentColor, fontSize: 18),
       maxLines: 1,

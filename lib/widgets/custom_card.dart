@@ -31,77 +31,100 @@ class _CustomCardState extends State<CustomCard> {
     final _height = MediaQuery.of(context).size.height;
 
     return Center(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: Theme.of(context).accentColor,
-            width: 2,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          
+          Column(
+            children: <Widget>[
+              Text(
+                "FEEDBACK OF STUDENTS(STAKEHOLDERS) OF ATTAINMENT OF THE",
+                style: TextStyle(fontSize: 16),
+              ),
+              Text(
+                "PROGRAM SPECIFIC OUTCOMES (PSOs) OF THE UG PROGRAM B.TECH.(CSE)",
+                style: TextStyle(fontSize: 16),
+              ),
+              Text(
+                "OF THE DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING",
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
           ),
-        ),
-        child: Container(
-          height: _height * 0.5,
-          width: _height * 0.6,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(height: _height * 0.05),
-                AutoSizeText(
-                  widget.title,
-                  maxLines: 1,
-                  style: TextStyle(fontSize: 24),
-                ),
-                Divider(
-                  height: 4,
-                  thickness: 2,
-                  color: Theme.of(context).accentColor,
-                ),
-                Flexible(
-                  child: widget.content,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          SizedBox(height: 100),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(
+                color: Theme.of(context).accentColor,
+                width: 2,
+              ),
+            ),
+            child: Container(
+              height: _height * 0.5,
+              width: _height * 0.6,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Flexible(
-                      flex: 2,
-                      child: widget.model.displayBackButton
-                          ? CustomButton(
-                              title: 'Back',
-                              onPressed: () {
-                                widget.onBackButtonPressed();
-                                // Navigator.of(context).pop();
-                                // widget.model.resetState();
-                              },
-                            )
-                          : RaisedButton(
-                              onPressed: null,
-                              disabledColor: Colors.white,
-                              elevation: 0,
-                              child: AutoSizeText(
-                                '',
-                                maxLines: 1,
-                              ),
-                            ),
+                    SizedBox(height: _height * 0.05),
+                    AutoSizeText(
+                      widget.title,
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 24),
+                    ),
+                    Divider(
+                      height: 4,
+                      thickness: 2,
+                      color: Theme.of(context).accentColor,
                     ),
                     Flexible(
-                      flex: 2,
-                      child: CustomButton(
-                        title: 'Next',
-                        onPressed: () {
-                          widget.onNextButtonPressed();
-                          // Navigator.pushNamed(context, '/card');
-                          // widget.model.resetState();
-                        },
-                      ),
+                      child: widget.content,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Flexible(
+                          flex: 2,
+                          child: widget.model.displayBackButton
+                              ? CustomButton(
+                                  title: 'Back',
+                                  onPressed: () {
+                                    widget.onBackButtonPressed();
+                                    // Navigator.of(context).pop();
+                                    // widget.model.resetState();
+                                  },
+                                )
+                              : RaisedButton(
+                                  onPressed: null,
+                                  disabledColor: Colors.white,
+                                  elevation: 0,
+                                  child: AutoSizeText(
+                                    '',
+                                    maxLines: 1,
+                                  ),
+                                ),
+                        ),
+                        Flexible(
+                          flex: 2,
+                          child: CustomButton(
+                            title: 'Next',
+                            onPressed: () {
+                              widget.onNextButtonPressed();
+                              // Navigator.pushNamed(context, '/card');
+                              // widget.model.resetState();
+                            },
+                          ),
+                        )
+                      ],
                     )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
