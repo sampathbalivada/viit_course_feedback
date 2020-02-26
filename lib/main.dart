@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/card': (BuildContext context) => CustomCardManager(),
           '/semestersPage': (BuildContext context) => SemestersPage(_model),
-          '/testPage': (BuildContext context) => TestPage()
+          // '/testPage': (BuildContext context) => TestPage()
         },
         home: AppHome(
           model: _model,
@@ -57,13 +57,13 @@ class AppHome extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(),
       body: WelcomePage(model),
-      // Uncomment these lines to display test page button - Use for Widget Tests
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed('/testPage');
-        },
-        child: Text('Test'),
-      ),
+      // // Uncomment these lines to display test page button - Use for Widget Tests
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).pushNamed('/testPage');
+      //   },
+      //   child: Text('Test'),
+      // ),
     );
   }
 }

@@ -199,11 +199,11 @@ class _DataInputCardState extends State<DataInputCard> {
                                     MediaQuery.of(context).size.width * 0.05),
                             buildText(context, '0 - Poor'),
                             buildText(context, '|'),
-                            buildText(context, '1 - Average'),
+                            buildText(context, '1 - Fair'),
                             buildText(context, '|'),
                             buildText(context, '2 - Good'),
                             buildText(context, '|'),
-                            buildText(context, '3 - Excellent'),
+                            buildText(context, '3 - Very Good'),
                             SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.6)
                           ],

@@ -42,7 +42,7 @@ class _SemestersPageState extends State<SemestersPage> {
               )
             : model.areAllTrueGetter
                 ? Scaffold(
-                    appBar: buildAppBar(), body: SubmissionAlert("Thank you"))
+                    appBar: buildAppBar(), body: SubmissionAlert("Thankyou"))
                 : Scaffold(
                     appBar: buildAppBar(),
                     body: Center(
