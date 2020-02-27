@@ -42,7 +42,7 @@ class _CustomCardState extends State<CustomCard> {
                 style: TextStyle(fontSize: 16),
               ),
               Text(
-                "PROGRAM SPECIFIC OUTCOMES (PSOs) OF THE UG PROGRAM B.TECH.(CSE)",
+                "COURSE OUTCOMES (COs) OF THE UG PROGRAM B.TECH.(CSE)",
                 style: TextStyle(fontSize: 16),
               ),
               Text(
